@@ -14,23 +14,21 @@ function videoContainer(video) {
     const videoHTML = `
         <div class="item skeleton">
 
-            <a href="view.html" hreflang="" class="video">
-
+            <a href="view.html?watch=${video.video_id}" hreflang="" class="video">
                 <div class="time">${video.duration}</div>
                 <div class="time_overlay"> </div>
-
             </a>
 
             <div class="footer">
 
-                <img src="../../../../myWebsite/public/assets/img/n7W2FwpydImLts5bH9AcgEDMzN0vGiuq.png" fetchpriority="low" alt="">
+                <img src="public/img/default.svg" fetchpriority="low" alt="">
 
                     <div class="footer_details">
 
-                        <a href="view.html" hreflang="" class="video_title">${video.title}</a>
+                        <a href="view.html?watch=${video.video_id}" hreflang="" class="video_title">${video.title}</a>
 
                         <div class="footer_details_bot">
-                            <a href="view.html" hreflang="" class="video_username">${video.channel} <i class="fa fa-check"></i></a>
+                            <a href="#" hreflang="" class="video_username">${video.channel} <i class="fa fa-check"></i></a>
                             <small><span class="video_views">${formatNumber(video.views)}</span> - <span class="video_posted_time">${enhancedTimeAgo(video.upload_date)}</span></small>
                         </div>
 
