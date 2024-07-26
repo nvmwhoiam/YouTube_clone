@@ -21,7 +21,7 @@ function videoContainer(video) {
 
             <div class="footer">
 
-                <img src="public/img/default.svg" fetchpriority="low" alt="">
+                <img src="./assets/img/default.svg" fetchpriority="low" alt="">
 
                     <div class="footer_details">
 
