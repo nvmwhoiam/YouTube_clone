@@ -1,0 +1,283 @@
+//MAIN CSS VARS START
+@import url("./icons.css");
+@import "./mixin.scss";
+
+main {
+    // height: 100vh;
+    // margin-bottom: 92px;
+
+    .recommended_section {
+        display: flex;
+        flex-direction: column;
+        gap: var(--md-p);
+        padding: var(--md-p);
+
+        .recommended_container {
+
+            .recommended_list {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+                margin: 0 auto;
+                flex-wrap: wrap;
+                gap: var(--md-p);
+
+                .item {
+                    width: 100%;
+
+                    .video {
+                        width: 100%;
+                        aspect-ratio: 16/9;
+                        background-color: var(--background-color-secondary);
+                        border-radius: var(--border-radius-light);
+                        transition: border-radius var(--animation-speed);
+                        position: relative;
+
+                        video {
+                            width: 100%;
+                            height: 100%;
+                        }
+
+                        .time {
+                            position: absolute;
+                            bottom: var(--sm-p);
+                            right: var(--sm-p);
+                            border-radius: var(--border-radius-light);
+                            background-color: var(--background-color);
+                            width: 45px;
+                            height: 25px;
+                            @include Dflex(center);
+                            font-size: 12px;
+                            transition: opacity var(--animation-speed), visibility var(--animation-speed);
+                        }
+
+                        .time_overlay {
+                            @include position(absolute, $bottom: 0, $left: 0);
+                            width: 100%;
+                            height: 2px;
+                            background-color: red;
+                            opacity: 0;
+                            visibility: hidden;
+                            transition: opacity var(--animation-speed), visibility var(--animation-speed);
+                        }
+                    }
+
+                    .footer {
+                        margin-top: var(--sm-p);
+                        display: flex;
+
+                        img {
+                            width: 48px;
+                            height: 48px;
+                            border-radius: 50%;
+                        }
+
+                        &_details {
+                            flex-grow: 1;
+                            margin: 0 var(--sm-p);
+
+                            .video_title {
+                                margin-bottom: var(--sm-p);
+                            }
+
+                            &_bot {
+                                display: flex;
+                                flex-direction: column;
+                                gap: 5px;
+                                opacity: 0.5;
+                            }
+                        }
+                    }
+
+                    &:hover {
+                        .video {
+                            border-bottom-left-radius: 0px;
+                            border-bottom-right-radius: 0px;
+
+                            .time {
+                                opacity: 0;
+                                visibility: hidden;
+
+                                &_overlay {
+                                    opacity: 1;
+                                    visibility: visible;
+                                }
+                            }
+
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    .shorts_section {
+        display: flex;
+        flex-direction: column;
+        gap: var(--md-p);
+        padding: var(--md-p);
+
+        // .section_header {}
+
+        .shorts_container {
+
+            .shorts_list {
+                display: flex;
+                gap: var(--md-p);
+                flex-wrap: nowrap;
+                overflow-x: auto;
+                @include hideScroll();
+
+                .shorts_item {
+                    display: flex;
+                    flex-direction: column;
+                    gap: var(--md-p);
+
+                    .top {
+                        width: 250px;
+                        aspect-ratio: 9/16;
+                        border: 1px solid red;
+                        border-radius: var(--border-radius-light);
+                    }
+
+                    .bot {
+                        line-height: 1.5;
+                        display: flex;
+                    }
+                }
+            }
+        }
+    }
+}
+
+
+.dropdown {
+    position: relative;
+
+    .icon_dropdown {
+
+        &_menu {
+            width: 100%;
+            position: absolute;
+            top: 100%;
+            right: 0;
+            min-width: 200px;
+            padding: 10px;
+            background-color: var(--background-color-secondary);
+            z-index: 2;
+
+            &_item {
+                display: flex;
+                font-size: 14px;
+
+                a,
+                button {
+                    width: 100%;
+                    height: 100%;
+                    padding: 10px;
+                    text-align: left;
+                    // border: 1px solid red;
+
+                    i {
+                        margin-right: 10px;
+
+                    }
+                }
+
+                &:not(:last-of-type) {
+                    margin-bottom: 10px;
+                }
+
+            }
+
+            &[data-state="closed"] {
+                display: none;
+            }
+
+            &[data-state="open"] {
+                display: block;
+                animation: visibilityVisible var(--animation-speed) forwards;
+            }
+
+            &[data-state="closing"] {
+                animation: visibilityHidden var(--animation-speed) forwards;
+            }
+        }
+    }
+
+    @media only screen and (max-width: 768px) {
+        .icon_dropdown {
+            &_menu {
+                right: 0;
+            }
+        }
+    }
+
+    @media only screen and (min-width: 768px) {}
+}
+
+.overlay {
+    width: 100vw;
+    height: 100vh;
+    @include position(fixed, $top: 0, $left: 0);
+    background-color: var(--low-opacity);
+    z-index: 999;
+    @include Dflex(center);
+
+    // &[data-state="closed"] {
+    //     display: none;
+    // }
+
+    &[data-state="open"] {
+        display: flex;
+    }
+
+    .modal {
+        max-width: 500px;
+        padding: var(--md-p);
+        background-color: var(--background-color);
+
+        &_header {
+            margin-bottom: var(--md-p);
+        }
+
+        &_body {
+            &_share {
+                width: 100%;
+                @include Dflex(space-between);
+                gap: var(--md-p);
+                flex-wrap: nowrap;
+                overflow-x: auto;
+
+                & {
+                    -ms-overflow-style: none;
+                    /* IE and Edge */
+                    scrollbar-width: none;
+                    /* Firefox */
+
+                    &::-webkit-scrollbar {
+                        display: none;
+                    }
+                }
+
+                &_item {
+                    display: flex;
+                    flex-direction: column;
+
+                    img {
+                        width: 60px;
+                        height: 60px;
+                    }
+                }
+
+                span {
+                    text-align: center;
+                }
+            }
+
+            &_share_link {
+                margin: var(--md-p) 0;
+            }
+        }
+
+    }
+}

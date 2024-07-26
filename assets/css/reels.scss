@@ -1,0 +1,52 @@
+//MAIN CSS VARS START
+@import url("./icons.css");
+@import "./mixin.scss";
+
+main {
+    display: flex;
+    justify-content: center;
+
+    .reels {
+        width: 100%;
+        max-width: 450px;
+        height: 100dvh;
+        overflow-y: auto;
+        padding: var(--md-p);
+        scroll-snap-type: y mandatory;
+        scrollbar-width: none;
+
+        &_container {
+            display: flex;
+            flex-direction: column;
+            gap: var(--md-p);
+
+            .reel {
+                width: 100%;
+                border: 1px solid var(--border-color);
+                aspect-ratio: 9/16;
+                border-radius: var(--border-radius-light);
+                position: relative;
+                scroll-snap-align: center;
+
+                &_right {
+                    @include position(absolute, $bottom: var(--md-p), $right: var(--md-p));
+                    display: flex;
+                    flex-direction: column;
+                    gap: var(--md-p);
+
+                    button {
+                        // background-color: $lowOpacity;
+
+                        i {
+                            font-size: 2rem;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    @media only screen and (max-width: 768px) {}
+
+    @media only screen and (min-width: 768px) {}
+}
