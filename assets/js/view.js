@@ -8,6 +8,7 @@ function videoContainer(video) {
             <a href="video.html/?watch=${video.video_id}" hreflang="" class="video">
                 <div class="time">${video.duration}</div>
                 <div class="time_overlay"> </div>
+                <img src="https://picsum.photos/200/300?random=${video.video_id}" alt="video image">
             </a>
 
             <div class="footer">

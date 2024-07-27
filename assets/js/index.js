@@ -1,6 +1,6 @@
 "use strict"
 
-import { dropdownMenu } from "./functions.js";
+import { dropdownMenu, enhancedTimeAgo, formatNumber } from "./functions.js";
 
 // document.querySelectorAll("video").forEach((e) => {
 //     // document.querySelectorAll(".time").innerText = Math.floor(e.duration);
@@ -12,54 +12,61 @@ import { dropdownMenu } from "./functions.js";
 
 function videoContainer(video) {
     const videoHTML = `
-        <div class="item skeleton">
+        <li class="video_card skeleton">
 
-            <a href="view.html?watch=${video.video_id}" hreflang="" class="video">
-                <div class="time">${video.duration}</div>
-                <div class="time_overlay"> </div>
+            <a href="view.html?watch=${video.video_id}" hreflang="" class="video_card_header">
+                <div class="video_card_header_duration">${video.duration}</div>
+                <div class="video_card_header_overlay"> </div>
+                <img src="https://picsum.photos/200/300?random=${video.video_id}" alt="video image">
             </a>
 
-            <div class="footer">
+            <div class="video_card_body">
 
-                <img src="./assets/img/default.svg" fetchpriority="low" alt="">
+                <div class="video_card_body_user_avatar">
+                    <img src="./assets/img/default.svg" fetchpriority="low" alt="">
+                </div>
 
-                    <div class="footer_details">
+                <div class="video_card_body_details">
+                    <a href="view.html?watch=${video.video_id}" hreflang="" class="video_card_body_details_title">
+                        ${video.title}
+                    </a>
 
-                        <a href="view.html?watch=${video.video_id}" hreflang="" class="video_title">${video.title}</a>
-
-                        <div class="footer_details_bot">
-                            <a href="#" hreflang="" class="video_username">${video.channel} <i class="fa fa-check"></i></a>
-                            <small><span class="video_views">${formatNumber(video.views)}</span> - <span class="video_posted_time">${enhancedTimeAgo(video.upload_date)}</span></small>
-                        </div>
-
+                    <div class="video_card_body_details_meta">
+                        <a href="#" hreflang="" class="username">
+                            ${video.channel}
+                        </a>
+                        <div class="meta_container">
+                            ${formatNumber(video.views)}</span> - <span class="video_posted_time">${enhancedTimeAgo(video.upload_date)}</span>
                     </div>
-
-                    <div class="dropdown_container">
-
-                        <div class="dropdown">
-                            <button type="button" class="btn_icon icon_dropdown">
-                                <i class="icon_ellipsis-vertical-solid"></i>
-                            </button>
-
-                            <ul class="icon_dropdown_menu" data-state="closed">
-
-                                <li class="icon_dropdown_menu_item">
-                                    <button type="button" class="add-to-queue"> <i class="icon_list-solid"></i> Add to queue</button>
-                                </li>
-
-                                <li class="icon_dropdown_menu_item">
-                                    <button type="button" class="share" data-btn="modal_share"><i class="icon_share-solid"></i> Share</button>
-                                </li>
-
-                            </ul>
-                        </div>
-
-                    </div>
+                </div>
 
             </div>
 
-        </div>
-        `;
+            <div class="video_card_body_btn">
+
+                <div class="dropdown">
+                    <button type="button" class="btn_icon icon_dropdown">
+                        <i class="icon_ellipsis-vertical-solid"></i>
+                    </button>
+
+                    <ul class="icon_dropdown_menu" data-state="closed">
+
+                        <li class="icon_dropdown_menu_item">
+                            <button type="button" class="add-to-queue"> <i class="icon_list-solid"></i>
+                                Add to queue</button>
+                        </li>
+
+                        <li class="icon_dropdown_menu_item">
+                            <button type="button" class="share" data-btn="modal_share"><i
+                                class="icon_share-solid"></i> Share</button>
+                        </li>
+
+                    </ul>
+                </div>
+
+            </div>
+        </li>
+       `;
 
     // Insert the message into the chat container
     const chatContainer = document.querySelector(".recommended_list");
@@ -72,8 +79,10 @@ function videoContainer(video) {
 function shortsContainer(video) {
     const videoHTML = `
         <li class="shorts_item">
-            <a href="shorts.html" class="top"></a>
-            <div class="bot">
+            <a href="shorts.html" class="shorts_item_video">
+            <img src="https://picsum.photos/200/300?random=${video.video_id}1" alt="video image">
+            </a>
+            <div class="shorts_item_body">
                 <div class="title">
                     <h4>${video.title}</h4>
                     <p>${formatNumber(video.views)}</p>
@@ -136,7 +145,7 @@ function attachEventListeners() {
     dropdownButtons.forEach(button => {
         button.addEventListener("click", function (event) {
             // Handle 'Add to queue' button click
-            const videoDropdown = button.closest(".item").querySelector(".icon_dropdown_menu");
+            const videoDropdown = button.closest(".dropdown").querySelector(".icon_dropdown_menu");
             // console.log("Add to queue clicked for video:", videoTitle);
             dropdownMenu(videoDropdown);
         });
@@ -145,7 +154,7 @@ function attachEventListeners() {
     addToQueueButtons.forEach(button => {
         button.addEventListener("click", function (event) {
             // Handle 'Add to queue' button click
-            const videoTitle = button.closest(".item").querySelector(".video_title").textContent;
+            const videoTitle = button.closest(".dropdown").querySelector(".video_title").textContent;
             console.log("Add to queue clicked for video:", videoTitle);
         });
     });
@@ -153,73 +162,8 @@ function attachEventListeners() {
     shareButtons.forEach(button => {
         button.addEventListener("click", function (event) {
             // Handle 'Share' button click
-            const videoTitle = button.closest(".item").querySelector(".video_title").textContent;
+            const videoTitle = button.closest(".dropdown").querySelector(".video_title").textContent;
             console.log("Share clicked for video:", videoTitle);
         });
     });
-}
-
-
-function formatNumber(number) {
-    const formatter = new Intl.NumberFormat('en-US', {
-        notation: 'compact',
-        compactDisplay: 'short'
-    });
-
-    return formatter.format(number);
-}
-
-function enhancedTimeAgo(timestamp) {
-    // Calculate the time elapsed since or until the given timestamp
-    const currentDate = new Date();
-    const timestampDate = new Date(timestamp);
-    let secondsDiff = (timestampDate - currentDate) / 1000;
-
-    // Define time periods in seconds
-    const minute = 60,
-        hour = 3600,
-        day = 86400,
-        week = 604800,
-        month = 2628000, // Approx. average month length in seconds (30.44 days)
-        year = 31536000; // 365 days in seconds
-
-    let unit, count, suffix;
-
-    // Determine time direction and calculate time ago or time until
-    if (secondsDiff < 0) {
-        suffix = 'ago';
-        secondsDiff = Math.abs(secondsDiff); // Make positive for calculation
-    } else {
-        suffix = 'in';
-    }
-
-    // Calculate time in the most appropriate unit
-    if (secondsDiff < minute) {
-        unit = 'second';
-        count = secondsDiff;
-    } else if (secondsDiff < hour) {
-        unit = 'minute';
-        count = Math.floor(secondsDiff / minute);
-    } else if (secondsDiff < day) {
-        unit = 'hour';
-        count = Math.floor(secondsDiff / hour);
-    } else if (secondsDiff < week) {
-        unit = 'day';
-        count = Math.floor(secondsDiff / day);
-    } else if (secondsDiff < month) {
-        unit = 'week';
-        count = Math.floor(secondsDiff / week);
-    } else if (secondsDiff < year) {
-        unit = 'month';
-        count = Math.floor(secondsDiff / month);
-    } else {
-        unit = 'year';
-        count = Math.floor(secondsDiff / year);
-    }
-
-    // Pluralize the unit if count is not 1
-    unit += (count !== 1) ? 's' : '';
-
-    // Return the formatted string based on time direction
-    return (suffix === 'ago') ? `${count} ${unit} ago` : `in ${count} ${unit}`;
 }

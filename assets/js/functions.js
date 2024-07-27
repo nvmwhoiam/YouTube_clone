@@ -112,3 +112,12 @@ export function enhancedTimeAgo(timestamp) {
     // Return the formatted string based on time direction
     return (suffix === 'ago') ? `${count} ${unit} ago` : `in ${count} ${unit}`;
 }
+
+export function formatNumber(number) {
+    const formatter = new Intl.NumberFormat('en-US', {
+        notation: 'compact',
+        compactDisplay: 'short'
+    });
+
+    return formatter.format(number);
+}
