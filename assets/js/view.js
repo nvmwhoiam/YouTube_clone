@@ -72,23 +72,23 @@ function videoContainer(video) {
     }
 }
 
-// window.addEventListener("DOMContentLoaded", async function () {
-//     try {
-//         const response = await fetch('./assets/js/video.json');
-//         const data = await response.json();
+window.addEventListener("DOMContentLoaded", async function () {
+    try {
+        const response = await fetch('./assets/js/video.json');
+        const data = await response.json();
 
-//         for (const video of data) {
-//             videoContainer(video);
-//         }
+        for (const video of data) {
+            videoContainer(video);
+        }
 
-//         // Now that all HTML content is added to the DOM, attach event listeners
-//         attachEventListeners();
+        // Now that all HTML content is added to the DOM, attach event listeners
+        attachEventListeners();
 
 
-//     } catch (error) {
-//         console.error('Error during fetching videos:', error);
-//     }
-// });
+    } catch (error) {
+        console.error('Error during fetching videos:', error);
+    }
+});
 
 function attachEventListeners() {
     const dropdownButtons = document.querySelectorAll(".icon_dropdown");
