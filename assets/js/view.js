@@ -4,71 +4,91 @@ import { enhancedTimeAgo, percentage, toggleFullscreen, dropdownMenu } from "./f
 
 function videoContainer(video) {
     const videoHTML = `
-        <div class="item skeleton">
-            <a href="video.html/?watch=${video.video_id}" hreflang="" class="video">
-                <div class="time">${video.duration}</div>
-                <div class="time_overlay"> </div>
+        <li class="video_card skeleton">
+
+            <a href="view.html?watch=${video.video_id}" hreflang="" class="video_card_header">
+                <div class="video_card_header_duration">${video.duration}</div>
+                <div class="video_card_header_overlay"> </div>
                 <img src="https://picsum.photos/200/300?random=${video.video_id}" alt="video image">
             </a>
 
-            <div class="footer">
-                <div class="footer_details">
-                    <a href="video.html/?watch=${video.video_id}" hreflang="" class="video_title">${video.title}</a>
-                    <div class="footer_details_bot">
-                        <a href="channel.html/?channel=${video.channel_id}" hreflang="" class="video_username">${video.channel} <i class="fa fa-check"></i></a>
-                        <small><span class="video_views">${formatNumber(video.views)}</span> - <span class="video_posted_time">${enhancedTimeAgo(video.upload_date)}</span></small>
-                    </div>
-                </div>
-                <div class="dropdown_wrapper">
-                    <div class="dropdown" data-pos="bot">
-                        <button type="button" class="btn_icon icon_dropdown">
-                            <i class="icon_ellipsis-vertical-solid"></i>
-                        </button>
-                        <ul class="icon_dropdown_menu" data-state="closed">
-                            <li class="icon_dropdown_menu_item">
-                                <button type="button" class="add-to-queue"> <i class="icon_list-solid"></i> Add to queue</button>
-                            </li>
-                            <li class="icon_dropdown_menu_item">
-                                <button type="button" class="download"> <i class="icon_list-solid"></i> Download</button>
-                            </li>
-                            <li class="icon_dropdown_menu_item">
-                                <button type="button" class="share" data-btn="modal_share"><i class="icon_share-solid"></i> Share</button>
-                            </li>
-                        </ul>
-                    </div>
+            <div class="video_card_body">
 
+                <div class="video_card_body_user_avatar">
+                    <img src="https://picsum.photos/48/48?random=${video.video_id}" fetchpriority="low" alt="User avatar">
+                </div>
+
+                <div class="video_card_body_details">
+                    <a href="view.html?watch=${video.video_id}" hreflang="" class="video_card_body_details_title">
+                        ${video.title}
+                    </a>
+
+                    <div class="video_card_body_details_meta">
+                        <a href="#" hreflang="" class="username">
+                            ${video.channel}
+                        </a>
+                        <div class="meta_container">
+                            ${formatNumber(video.views)}</span> - <span class="video_posted_time">${enhancedTimeAgo(video.upload_date)}</span>
+                    </div>
                 </div>
 
             </div>
 
-        </div>
-        `;
+            <div class="video_card_body_btn">
+
+                <div class="dropdown">
+                    <button type="button" class="btn_icon icon_dropdown">
+                        <i class="icon_ellipsis-vertical-solid"></i>
+                    </button>
+
+                    <ul class="icon_dropdown_menu" data-state="closed">
+
+                        <li class="icon_dropdown_menu_item">
+                            <button type="button" class="add-to-queue">
+                                <i class="icon_list-solid"></i>
+                                Add to queue
+                            </button>
+                        </li>
+
+                        <li class="icon_dropdown_menu_item">
+                            <button type="button" class="share" data-btn="modal_share">
+                                <i class="icon_share-solid"></i>
+                                Share
+                            </button>
+                        </li>
+
+                    </ul>
+                </div>
+
+            </div>
+        </li>
+       ` ;
 
     // Insert the message into the chat container
-    const chatContainer = document.getElementById("suggestions");
+    const chatContainer = document.querySelector(".recommended_list");
 
     if (chatContainer) {
         chatContainer.insertAdjacentHTML("beforeend", videoHTML);
     }
 }
 
-window.addEventListener("DOMContentLoaded", async function () {
-    try {
-        const response = await fetch('./assets/js/video.json');
-        const data = await response.json();
+// window.addEventListener("DOMContentLoaded", async function () {
+//     try {
+//         const response = await fetch('./assets/js/video.json');
+//         const data = await response.json();
 
-        for (const video of data) {
-            videoContainer(video);
-        }
+//         for (const video of data) {
+//             videoContainer(video);
+//         }
 
-        // Now that all HTML content is added to the DOM, attach event listeners
-        attachEventListeners();
+//         // Now that all HTML content is added to the DOM, attach event listeners
+//         attachEventListeners();
 
 
-    } catch (error) {
-        console.error('Error during fetching videos:', error);
-    }
-});
+//     } catch (error) {
+//         console.error('Error during fetching videos:', error);
+//     }
+// });
 
 function attachEventListeners() {
     const dropdownButtons = document.querySelectorAll(".icon_dropdown");
@@ -87,7 +107,7 @@ function attachEventListeners() {
     addToQueueButtons.forEach(button => {
         button.addEventListener("click", function (event) {
             // Handle 'Add to queue' button click
-            const videoTitle = button.closest(".item").querySelector(".video_title").textContent;
+            const videoTitle = button.closest(".video_card").querySelector(".video_card_body_details_title").textContent;
             console.log("Add to queue clicked for video:", videoTitle);
         });
     });
@@ -95,7 +115,7 @@ function attachEventListeners() {
     shareButtons.forEach(button => {
         button.addEventListener("click", function (event) {
             // Handle 'Share' button click
-            const videoTitle = button.closest(".item").querySelector(".video_title").textContent;
+            const videoTitle = button.closest(".video_card").querySelector(".video_card_body_details_title").textContent;
             console.log("Share clicked for video:", videoTitle);
         });
     });

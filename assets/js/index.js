@@ -23,7 +23,7 @@ function videoContainer(video) {
             <div class="video_card_body">
 
                 <div class="video_card_body_user_avatar">
-                    <img src="./assets/img/default.svg" fetchpriority="low" alt="">
+                    <img src="https://picsum.photos/48/48?random=${video.video_id}" fetchpriority="low" alt="">
                 </div>
 
                 <div class="video_card_body_details">
@@ -52,13 +52,17 @@ function videoContainer(video) {
                     <ul class="icon_dropdown_menu" data-state="closed">
 
                         <li class="icon_dropdown_menu_item">
-                            <button type="button" class="add-to-queue"> <i class="icon_list-solid"></i>
-                                Add to queue</button>
+                            <button type="button" class="add-to-queue">
+                                <i class="icon_list-solid"></i>
+                                Add to queue
+                            </button>
                         </li>
 
                         <li class="icon_dropdown_menu_item">
-                            <button type="button" class="share" data-btn="modal_share"><i
-                                class="icon_share-solid"></i> Share</button>
+                            <button type="button" class="share" data-btn="modal_share">
+                                <i class="icon_share-solid"></i>
+                                Share
+                            </button>
                         </li>
 
                     </ul>
@@ -66,7 +70,7 @@ function videoContainer(video) {
 
             </div>
         </li>
-       `;
+       ` ;
 
     // Insert the message into the chat container
     const chatContainer = document.querySelector(".recommended_list");
@@ -78,7 +82,7 @@ function videoContainer(video) {
 
 function shortsContainer(video) {
     const videoHTML = `
-        <li class="shorts_item">
+        <li class="shorts_item" >
             <a href="shorts.html" class="shorts_item_video">
             <img src="https://picsum.photos/200/300?random=${video.video_id}1" alt="video image">
             </a>
@@ -112,7 +116,7 @@ function shortsContainer(video) {
                 </div>
             </div>
         </li>
-       ` ;
+        ` ;
 
     // Insert the message into the chat container
     const chatContainer = document.querySelector(".shorts_list");
