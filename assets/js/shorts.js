@@ -221,16 +221,16 @@ function playPauseAnimation(selector) {
 
     if (isPaused) {
         html = `
-        < div class="reel_center" >
-            <i class="icon_pause-solid"></i>
-            </ >
+            <div class="reel_center" >
+                <i class="icon_pause-solid"></i>
+            </div>
         `;
     } else {
         html = `
-        < div class="reel_center" >
-            <i class="icon_play-solid"></i>
-            </ >
-        `;
+            <div class="reel_center" >
+                <i class="icon_play-solid"></i>
+            </div>
+            `;
     }
 
     selector.insertAdjacentHTML("beforeend", html);
