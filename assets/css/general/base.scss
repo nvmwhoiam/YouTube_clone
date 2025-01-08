@@ -1,60 +1,4 @@
-//MAIN CSS VARS START
-@mixin Dflex($jscntnt) {
-    display: flex;
-    justify-content: $jscntnt;
-    align-items: center;
-}
-
-@mixin bckimgCenter {
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-}
-
-@mixin grids($tmplt, $cgap, $rgap) {
-    display: grid;
-    grid-template-columns: repeat($tmplt, 1fr);
-    grid-column-gap: $cgap;
-    grid-row-gap: $rgap;
-}
-
-@mixin position($position, $top: null, $bottom: null, $left: null, $right: null) {
-    position: $position;
-
-    @if $top {
-        top: $top;
-    }
-
-    @if $bottom {
-        bottom: $bottom;
-    }
-
-    @if $left {
-        left: $left;
-    }
-
-    @if $right {
-        right: $right;
-    }
-}
-
-@mixin posCenter {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, 50%);
-}
-
-@mixin hideScroll {
-    &::-webkit-scrollbar {
-        display: none;
-    }
-
-    -ms-overflow-style: none;
-    /* IE and Edge */
-    scrollbar-width: none;
-    /* Firefox */
-}
+@import "./mixin.scss";
 
 // 070624 
 
@@ -69,7 +13,7 @@
 
     --text-color-secondary: hsl(0, 0%, 70%);
 
-    --border-color: hwb(0 100% 0% / 0.1);
+    --border-color: hsla(0, 0%, 100%, 0.1);
 
     --green-color: hsl(126, 69%, 25%);
     --red-color: hsl(354, 70%, 25%);
@@ -98,7 +42,15 @@
     --font-size-medium: 1rem; // 16px
     --font-size-large: 1.125rem; // 18px
     --font-size-xlarge: 1.25rem; // 20px
-    --font-size-xxlarge: 1.5rem; // 24px
+    --font-size-2xlarge: 1.5rem; // 24px
+    --font-size-3xlarge: 1.625rem; // 26px
+    --font-size-4xlarge: 1.75rem; // 28px
+    --font-size-5xlarge: 1.875rem; // 30px
+    --font-size-6xlarge: 2rem; // 32px
+    --font-size-7xlarge: 2.25rem; // 36px
+    --font-size-8xlarge: 3rem; // 48px
+    --font-size-9xlarge: 4rem; // 64px
+    --font-size-10xlarge: 4.5rem; // 72px
 
     /* Default line heights */
     --line-height-sm: 1.2;
@@ -116,8 +68,9 @@
 :root:has(body.dark) {
     color-scheme: dark;
     /* Default background colours for dark mode */
-    --background-color: #1f252f;
-    --background-color-secondary: hsl(0, 1%, 16%);
+    --background-color: hsl(222, 47%, 11%);
+    --background-color-secondary: hsl(218, 48%, 14%);
+    --background-color-secondary-hover: hsl(221, 29%, 22%);
     --text-color: hsl(0, 0%, 90%);
     --link-color: hsl(214, 93%, 62%);
 }
@@ -135,8 +88,9 @@
     :root {
         color-scheme: dark;
         /* Default background colours for dark mode */
-        --background-color: #1f252f;
-        --background-color-secondary: hsl(216, 28%, 17%);
+        --background-color: hsl(222, 47%, 11%);
+        --background-color-secondary: hsl(218, 48%, 14%);
+        --background-color-secondary-hover: hsl(221, 29%, 22%);
         --text-color: hsl(0, 0%, 90%);
         --link-color: hsl(214, 93%, 62%);
     }
@@ -218,6 +172,7 @@ small {
 p {
     font-size: var(--font-size-base);
     color: var(--text-color-secondary);
+    line-height: 1.5;
 }
 
 li {
@@ -227,6 +182,16 @@ li {
 
 img {
     pointer-events: none;
+    width: 100%;
+    height: 100%;
+    display: block;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+
+video {
     width: 100%;
     height: 100%;
     display: block;
@@ -295,11 +260,26 @@ button {
         width: 48px;
         height: 48px;
         @include Dflex(center);
+        flex-shrink: 0;
 
         i {
             font-size: var(--font-size-xlarge);
             width: 40px;
             height: 40px;
+            @include Dflex(center);
+            border-radius: var(--border-radius-light);
+        }
+    }
+
+    &.btn_icon_sm {
+        width: 24px;
+        height: 24px;
+        @include Dflex(center);
+
+        i {
+            font-size: var(--font-size-xlarge);
+            width: 20px;
+            height: 20px;
             @include Dflex(center);
             border-radius: var(--border-radius-light);
         }
@@ -389,18 +369,19 @@ label {
 
 a {
     display: inline-block;
+    text-decoration: underline;
     transition: color var(--animation-speed);
     color: var(--text-color);
     transition: background-color var(--animation-speed);
 
-    // &:not(.a_primary, .a_btn) {
-    //     color: var(--link-color);
+    &.a_link {
+        color: var(--link-color);
 
-    //     &:hover,
-    //     &:focus {
-    //         color: var(--text-color-secondary);
-    //     }
-    // }
+        &:hover,
+        &:focus {
+            color: var(--text-color-secondary);
+        }
+    }
 
     &:focus {
         text-decoration: none;
@@ -409,17 +390,17 @@ a {
         border-radius: 0;
     }
 
-    &.a_btn {
+    // &.a_btn {
 
-        &:hover,
-        &:focus {
-            background-color: var(--accent-color);
-            border-radius: var(--border-radius-light);
-        }
-    }
+    //     &:hover,
+    //     &:focus {
+    //         background-color: var(--accent-color);
+    //         border-radius: var(--border-radius-light);
+    //     }
+    // }
 
     &.a_primary {
-        padding: var(--md-p) calc(var(--md-p) * 2);
+        padding: var(--md-p) var(--xl-p);
         background-color: var(--accent-color);
         border-radius: var(--border-radius-light);
         text-decoration: none;
@@ -504,6 +485,98 @@ a {
     }
 }
 
+.checkbox {
+    width: 25px;
+    height: 25px;
+    display: flex;
+    position: relative;
+    cursor: pointer;
+    margin-right: 5px;
+
+    input {
+        position: absolute;
+        opacity: 0;
+        visibility: hidden;
+
+        &:checked {
+            &+.checkbox_bg {
+                background-color: var(--accent-color);
+
+                .tick_1 {
+                    transform: rotate(-45deg);
+                }
+
+                .tick_2 {
+                    transform: rotate(45deg);
+                }
+            }
+        }
+    }
+
+    .checkbox_bg {
+        background-color: #ccc;
+        width: 100%;
+        height: 100%;
+        position: relative;
+        transition: background-color var(--animation-speed);
+
+        .tick_1,
+        .tick_2 {
+            width: 2px;
+            background-color: #ccc;
+            display: block;
+            transition: transform var(--animation-speed);
+        }
+
+        .tick_1 {
+            height: 12px;
+            @include position(absolute, $bottom: 2px, $left: 6px);
+        }
+
+        .tick_2 {
+            height: 25px;
+            @include position(absolute, $top: 0, $left: 70%);
+        }
+    }
+}
+
+.radio {
+    width: 25px;
+    height: 25px;
+    display: flex;
+    position: relative;
+    cursor: pointer;
+
+    input {
+        position: absolute;
+        opacity: 0;
+        visibility: hidden;
+
+        &:checked {
+            &+.radio_wrapper {
+                background-color: var(--accent-color);
+            }
+        }
+    }
+
+    .radio_wrapper {
+        background-color: #ccc;
+        width: 100%;
+        height: 100%;
+        border-radius: 50%;
+        transition: background-color var(--animation-speed);
+        @include Dflex(center);
+
+        .round {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background-color: #ccc;
+            display: block;
+        }
+    }
+}
+
 .btn_loading {
     position: relative;
     @include Dflex(center);
@@ -549,7 +622,8 @@ a {
             display: flex;
             margin-top: calc(var(--sm-p) / 2);
 
-            input {
+            input,
+            textarea {
                 border-radius: var(--border-radius-light);
             }
 
@@ -637,27 +711,150 @@ a {
     }
 }
 
-@keyframes visibilityVisible {
-    0% {
-        visibility: hidden;
-        opacity: 0;
+// /* Adjustments for different screen sizes */
+// @media (max-width: 480px) {
+//     :root {
+//         --font-size-small: 0.625rem; // 10px
+//         --font-size-base: 0.75rem; // 12px
+//         --font-size-medium: 0.875rem; // 14px
+//         --font-size-large: 1rem; // 16px
+//         --font-size-xlarge: 1.125rem; // 18px
+//         --font-size-xxlarge: 1.25rem; // 20px
+//     }
+// }
+
+// @media (min-width: 481px) and (max-width: 768px) {
+//     :root {
+//         --font-size-small: 0.6875rem; // 11px
+//         --font-size-base: 0.8125rem; // 13px
+//         --font-size-medium: 0.9375rem; // 15px
+//         --font-size-large: 1.0625rem; // 17px
+//         --font-size-xlarge: 1.1875rem; // 19px 
+//         --font-size-xxlarge: 1.375rem; // 22px
+//     }
+// }
+
+// @media (min-width: 769px) and (max-width: 1024px) {
+//     :root {
+//         --font-size-small: 0.75rem; // 12px
+//         --font-size-base: 0.875rem; // 14px
+//         --font-size-medium: 1rem; // 16px
+//         --font-size-large: 1.125rem; // 18px
+//         --font-size-xlarge: 1.25rem; // 20px
+//         --font-size-xxlarge: 1.5rem; // 24px
+//     }
+// }
+
+// @media (min-width: 1025px) and (max-width: 1200px) {
+//     :root {
+//         --font-size-small: 0.8125rem; // 13px
+//         --font-size-base: 0.9375rem; // 15px
+//         --font-size-medium: 1.0625rem; // 17px
+//         --font-size-large: 1.1875rem; // 19px
+//         --font-size-xlarge: 1.3125rem; // 21px
+//         --font-size-xxlarge: 1.5625rem; // 25px
+//     }
+// }
+
+// @media (min-width: 1201px) {
+//     :root {
+//         --font-size-small: 0.875rem; // 14px 
+//         --font-size-base: 1rem; // 16px 
+//         --font-size-medium: 1.125rem; // 18px
+//         --font-size-large: 1.25rem; // 20px
+//         --font-size-xlarge: 1.375rem; // 22px
+//         --font-size-xxlarge: 1.625rem; // 26px
+//     }
+// }
+
+//MAIN CSS VARS END
+
+// Dark mode
+@media (prefers-color-scheme: dark) {}
+
+@media (prefers-color-scheme: light) {}
+
+@media (prefers-reduced-motion: reduce) {}
+
+.dropdown {
+    position: relative;
+
+    .icon_dropdown {
+        &_menu {
+            // width: 100%;
+            position: absolute;
+            min-width: 200px;
+            padding: var(--sm-p);
+            background-color: var(--background-color-secondary);
+            // box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            // backdrop-filter: blur(10px);
+            border-radius: var(--border-radius-light);
+            z-index: 999;
+            display: flex;
+            flex-direction: column;
+            gap: var(--sm-p);
+
+            &[data-position="top_right"] {
+                bottom: calc(100% + var(--sm-p));
+                right: 0;
+            }
+
+            &[data-position="top_left"] {
+                bottom: calc(100% + var(--sm-p));
+                left: 0;
+            }
+
+            &[data-position="bot_right"] {
+                top: calc(100% + var(--sm-p));
+                right: 0;
+            }
+
+            &[data-position="bot_left"] {
+                top: calc(100% + var(--sm-p));
+                left: 0;
+            }
+
+            &_item {
+                display: flex;
+                font-size: 14px;
+
+                a,
+                label,
+                button {
+                    width: 100%;
+                    height: 100%;
+                    padding: var(--sm-p);
+                    text-align: left;
+
+                    i {
+                        margin-right: var(--sm-p);
+
+                    }
+                }
+            }
+
+            &[data-state="closed"] {
+                display: none;
+            }
+
+            &[data-state="open"] {
+                display: flex;
+                animation: visibilityVisible var(--animation-speed) forwards;
+            }
+
+            &[data-state="closing"] {
+                animation: visibilityHidden var(--animation-speed) forwards;
+            }
+        }
     }
 
-    100% {
-        visibility: visible;
-        opacity: 1;
-    }
-}
-
-@keyframes visibilityHidden {
-    0% {
-        visibility: visible;
-        opacity: 1;
+    @media only screen and (max-width: 768px) {
+        .icon_dropdown {
+            &_menu {
+                right: 0;
+            }
+        }
     }
 
-    100% {
-        visibility: hidden;
-        opacity: 0;
-    }
-
+    @media only screen and (min-width: 768px) {}
 }

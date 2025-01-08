@@ -3,42 +3,107 @@
 
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" media="screen" href="assets/css/reels.css">
-    <title>Reels</title>
+    <meta http-equiv="Cache-control" content="no-cache">
+    <meta name="description"
+        content="LynqIs.io is my personal website, where I share my journey as an aspiring web developer with a passion for both software and hardware. Here, you'll find projects that showcase my growing expertise in front-end and back-end development. I work with HTML, JavaScript, CSS, PHP, Python, and several JavaScript frameworks that I’m continually improving with. LynqIs.io reflects my dedication to learning, building, and exploring innovative solutions, blending creativity and functionality in everything I create.">
+    <link rel="stylesheet" type="text/css" media="screen" href="/assets/css/shorts.css">
+    <link rel="icon" type="image/x-icon" href="../../assets/img/favicon-16x16.png">
+    <link rel="icon" type="image/x-icon" href="../../assets/img/favicon-32x32.png">
+    <meta name="robots" content="index, follow">
+    <meta name="author" content="nvmwhoiam">
+    <meta name="keywords"
+        content="Connectivity Solutions,Innovative Technology, Collaboration Platform,Tech Solutions,Communication Tools,Tech Innovation,Efficiency Tools,Bridging Technology,Seamless Connections,Modern Connectivity">
+
+    <title>Lynqis - YouTube Clone Shorts | Lynqis.io</title>
 </head>
 
 <body>
 
-    <main>
+    <main class="main_container">
 
         <div class="reels">
 
             <div class="reels_container">
 
-                <!-- <div class="reel">
+                <div class="reel">
 
-                    <div class="reel_card"></div>
+                    <div class="reel_top_left">
+
+                        <button type="button" class="btn_icon" data-videoBtn="playPause" aria-label="">
+                            <i class="icon_pause-solid"></i>
+                        </button>
+
+                        <div class="button_body">
+
+                            <button type="button" class="btn_icon" data-videoBtn="volume" aria-label="">
+                                <i class="icon_volume-high-solid"></i>
+                            </button>
+
+                            <div class="volume">
+
+                                <input type="range" value="20" step="1" data-videoBtn="volumeRange">
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <div class="reel_top_right">
+
+                        <button type="button" class="btn_icon" data-videoBtn="fullsize" aria-label="">
+                            <i class="icon_expand-solid"></i>
+                        </button>
+
+                    </div>
+
+                    <div class="reel_card"> </div>
 
                     <div class="reel_right">
 
-                        <button type="button" class="btn_icon" data-videoBtn="playPause" aria-label="">
-                            <i class="icon_thumbs-up-regular"></i>
-                        </button>
+                        <div class="button_body">
 
-                        <button type="button" class="btn_icon" data-btn="" aria-label="">
-                            <i class="icon_thumbs-down-regular"></i>
-                        </button>
+                            <button type="button" class="btn_icon" data-videoBtn="like" aria-label="">
+                                <i class="icon_thumbs-up-regular"></i>
+                            </button>
 
-                        <button type="button" class="btn_icon" data-btn="" aria-label="">
-                            <i class="icon_comment-regular"></i>
-                        </button>
+                            <small>1.2K</small>
 
-                        <button type="button" class="btn_icon" data-videoBtn="playPause" aria-label="">
-                            <i class="icon_share-solid"></i>
-                        </button>
+                        </div>
 
-                        <button type="button" class="btn_icon" data-btn="" aria-label="">
+                        <div class="button_body">
+
+                            <button type="button" class="btn_icon" data-videoBtn="dislike" aria-label="">
+                                <i class="icon_thumbs-down-regular"></i>
+                            </button>
+
+                            <small>1.2K</small>
+
+                        </div>
+
+                        <div class="button_body">
+
+                            <button type="button" class="btn_icon" data-videoBtn="comment" aria-label="">
+                                <i class="icon_comment-regular"></i>
+                            </button>
+
+                            <small>99+</small>
+
+                        </div>
+
+                        <div class="button_body">
+
+                            <button type="button" class="btn_icon" data-videoBtn="share" aria-label="">
+                                <i class="icon_share-solid"></i>
+                            </button>
+
+                            <small>Share</small>
+
+                        </div>
+
+                        <button type="button" class="btn_icon" data-videoBtn="more" aria-label="">
                             <i class="icon_ellipsis-vertical-solid"></i>
                         </button>
 
@@ -46,35 +111,80 @@
 
                 </div>
 
-                <div class="reel">
+            </div>
 
-                    <div class="reel_card"></div>
+        </div>
 
-                    <div class="reel_right">
+        <div class="share_container" data-state="closed">
 
-                        <button type="button" class="btn_icon" data-videoBtn="playPause" aria-label="">
-                            <i class="icon_thumbs-up-regular"></i>
-                        </button>
+            <div class="share_body">
 
-                        <button type="button" class="btn_icon" data-btn="" aria-label="">
-                            <i class="icon_thumbs-down-regular"></i>
-                        </button>
+                <h2 class="title">Share</h2>
 
-                        <button type="button" class="btn_icon" data-btn="" aria-label="">
-                            <i class="icon_comment-regular"></i>
-                        </button>
+                <ul class="socials_list">
+                    <li class="socials_list_item">
+                        <a href="#" hreflang="">
+                            <img src="./assets/social_svgs/behance.svg">
+                        </a>
+                        <small>Behance</small>
+                    </li>
+                    <li class="socials_list_item">
+                        <a href="#" hreflang="">
+                            <img src="./assets/social_svgs/discord.svg">
+                        </a>
+                        <small>Discord</small>
+                    </li>
+                    <li class="socials_list_item">
+                        <a href="#" hreflang="">
+                            <img src="./assets/social_svgs/dribbble.svg">
+                        </a>
+                        <small>Dribble</small>
+                    </li>
+                    <li class="socials_list_item">
+                        <a href="#" hreflang="">
+                            <img src="./assets/social_svgs/wechat.svg">
+                        </a>
+                        <small>WeChat</small>
+                    </li>
+                    <li class="socials_list_item">
+                        <a href="#" hreflang="">
+                            <img src="./assets/social_svgs/whatsapp.svg">
+                        </a>
+                        <small>WhatsApp</small>
+                    </li>
+                    <li class="socials_list_item">
+                        <a href="#" hreflang="">
+                            <img src="./assets/social_svgs/stack-exchange.svg">
+                        </a>
+                        <small>Stack Exchange</small>
+                    </li>
+                    <li class="socials_list_item">
+                        <a href="#" hreflang="">
+                            <img src="./assets/social_svgs/reddit.svg">
+                        </a>
+                        <small>Reddit</small>
+                    </li>
+                    <li class="socials_list_item">
+                        <a href="#" hreflang="">
+                            <img src="./assets/social_svgs/telegram.svg">
+                        </a>
+                        <small>Telegram</small>
+                    </li>
+                    <li class="socials_list_item">
+                        <a href="#" hreflang="">
+                            <img src="./assets/social_svgs/tiktok.svg">
+                        </a>
+                        <small>TikTok</small>
+                    </li>
 
-                        <button type="button" class="btn_icon" data-videoBtn="playPause" aria-label="">
-                            <i class="icon_share-solid"></i>
-                        </button>
+                </ul>
 
-                        <button type="button" class="btn_icon" data-btn="" aria-label="">
-                            <i class="icon_ellipsis-vertical-solid"></i>
-                        </button>
-
-                    </div>
-
-                </div> -->
+                <div class="input_body">
+                    <input type="text" name="url_input" readonly value="https://lynqis.io/demo/youtube-clone/shorts">
+                    <button type="button" class="btn_icon">
+                        <i class="icon_copy-solid"></i>
+                    </button>
+                </div>
 
             </div>
 
@@ -82,9 +192,7 @@
 
     </main>
 
-
     <script type="module" src="assets/js/shorts.js"></script>
-
 
 </body>
 

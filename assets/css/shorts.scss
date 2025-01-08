@@ -1,0 +1,178 @@
+@import "./general/icons.css";
+@import "./general/base.css";
+@import "./general/mixin.scss";
+
+.main_container {
+    display: flex;
+    justify-content: center;
+
+    .reels {
+        width: 100%;
+        max-width: 450px;
+        height: 100dvh;
+        overflow-y: auto;
+        scroll-snap-type: y mandatory;
+        scrollbar-width: none;
+
+        &_container {
+            display: flex;
+            flex-direction: column;
+            gap: var(--md-p);
+
+            .reel {
+                width: 100%;
+                background-color: var(--low-opacity);
+                position: relative;
+                scroll-snap-align: center;
+                overflow: hidden;
+
+                &_top_left {
+                    @include position(absolute, $top: var(--md-p), $left: var(--md-p));
+                    display: flex;
+                    gap: var(--md-p);
+
+                    .button_body {
+                        display: flex;
+                        gap: var(--sm-p);
+
+                        .volume {
+                            @include Dflex(center);
+                            border-radius: var(--border-radius-light);
+                            background-color: var(--low-opacity);
+                            padding: 0 var(--md-p);
+                        }
+                    }
+                }
+
+                &_top_right {
+                    @include position(absolute, $top: var(--md-p), $right: var(--md-p));
+                }
+
+                &_card {
+                    width: 100%;
+                    height: 100%;
+                }
+
+                &_right {
+                    @include position(absolute, $bottom: var(--md-p), $right: var(--md-p));
+                    display: flex;
+                    flex-direction: column;
+                    gap: var(--md-p);
+
+                    .button_body {
+                        display: flex;
+                        flex-direction: column;
+                        align-items: center;
+                        gap: var(--xs-p);
+                    }
+                }
+
+                &_center {
+                    @include posCenter(absolute);
+
+                    i {
+                        animation: growIcon var(--animation-speed) forwards;
+                    }
+                }
+
+                button {
+                    background-color: var(--low-opacity);
+                }
+            }
+        }
+
+        @media only screen and (max-width: 768px) {
+            & {
+                &_container {
+                    .reel {
+                        width: 100vw;
+                        height: 100vh;
+
+                        &_top_right {
+                            display: none;
+                        }
+                    }
+                }
+            }
+        }
+
+        @media only screen and (min-width: 768px) {
+            & {
+                padding: var(--md-p);
+
+                &_container {
+                    .reel {
+                        aspect-ratio: 9 / 16;
+                        border: 1px solid var(--border-color);
+                        border-radius: var(--border-radius-light);
+                    }
+                }
+            }
+        }
+    }
+
+    @keyframes growIcon {
+        from {
+            font-size: 16px;
+            opacity: 1;
+        }
+
+        to {
+            font-size: 50px;
+            opacity: 0;
+        }
+    }
+
+    .share_container {
+        @include posCenter(fixed);
+        width: 500px;
+        border: 1px solid var(--border-color);
+        border-radius: var(--border-radius-light);
+        padding: var(--md-p);
+        @include dataStateFade();
+
+        .share_body {
+            display: flex;
+            flex-direction: column;
+            gap: var(--md-p);
+
+            .title {
+                text-align: center;
+            }
+
+            .socials_list {
+                display: flex;
+                flex-wrap: nowrap;
+                gap: var(--md-p);
+                overflow-x: scroll;
+                @include hideScroll();
+
+                .socials_list_item {
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+
+                    a {
+                        width: 48px;
+                        height: 48px;
+                    }
+
+                    small {
+                        text-align: center;
+                    }
+                }
+            }
+
+            .input_body {
+                border: 1px solid var(--border-color);
+                border-radius: var(--border-radius-light);
+                display: flex;
+
+                input {
+                    border: none;
+                }
+            }
+        }
+    }
+
+}

@@ -1,4 +1,3 @@
-
 export function dropdownMenu(selector) {
 
     if (selector.getAttribute("data-state") !== "open") {
@@ -21,7 +20,6 @@ export function dropdownMenu(selector) {
     }
 }
 
-// Function to make the video full screen or exit full screen
 export function toggleFullscreen(element) {
 
     if (!document.fullscreenElement &&
@@ -50,7 +48,6 @@ export function toggleFullscreen(element) {
     }
 }
 
-// PERCENTAGE //
 export function percentage(percentage, value) {
 
     const result = (percentage / 100) * value;

@@ -5,8 +5,18 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" media="screen" href="assets/css/view.css">
-    <title>Video</title>
+    <meta http-equiv="Cache-control" content="no-cache">
+    <meta name="description"
+        content="LynqIs.io is my personal website, where I share my journey as an aspiring web developer with a passion for both software and hardware. Here, you'll find projects that showcase my growing expertise in front-end and back-end development. I work with HTML, JavaScript, CSS, PHP, Python, and several JavaScript frameworks that I’m continually improving with. LynqIs.io reflects my dedication to learning, building, and exploring innovative solutions, blending creativity and functionality in everything I create.">
+    <link rel="stylesheet" type="text/css" media="screen" href="/assets/css/view.css">
+    <link rel="icon" type="image/x-icon" href="../../assets/img/favicon-16x16.png">
+    <link rel="icon" type="image/x-icon" href="../../assets/img/favicon-32x32.png">
+    <meta name="robots" content="index, follow">
+    <meta name="author" content="nvmwhoiam">
+    <meta name="keywords"
+        content="Connectivity Solutions,Innovative Technology, Collaboration Platform,Tech Solutions,Communication Tools,Tech Innovation,Efficiency Tools,Bridging Technology,Seamless Connections,Modern Connectivity">
+
+    <title>Lynqis - YouTube Clone Video | Lynqis.io</title>
 </head>
 
 <body>
@@ -15,13 +25,13 @@
 
     </nav>
 
-    <main>
+    <main class="main_container">
 
-        <section class="video">
+        <section class="video_section">
 
-            <div class="vid" id="video">
+            <div class="vid paused" id="video">
 
-                <video class="currentVideo">
+                <video class="currentVideo" id="currentVideo">
                     <source src="./assets/vids/aPAyyvq_460svav1.mp4" type="video/mp4">
                     Your browser does not support the video tag.
                 </video>
@@ -29,9 +39,6 @@
                 <div class="vid_footer">
 
                     <div class="body">
-
-                        <input type="range" class="indicator" data-videoData="progressInput" min="0" max="100"
-                            value="0">
 
                         <div class="preview">
 
@@ -43,6 +50,9 @@
 
                         </div>
 
+                        <input type="range" class="indicator" data-videoData="progressInput" min="0" max="100"
+                            value="0">
+
                     </div>
 
                     <div class="flex">
@@ -50,7 +60,7 @@
                         <div class="flex_item">
 
                             <button type="button" class="btn_icon" data-videoBtn="playPause" aria-label="">
-                                <i class="icon_play-solid"></i>
+                                <i class="icon_pause-solid"></i>
                             </button>
 
                             <button type="button" class="btn_icon" data-btn="" aria-label="">
@@ -64,7 +74,7 @@
                                 </button>
 
                                 <input type="range" data-videoData="volumeInput" class="indicator" min="0" max="1"
-                                    step="0.1" value="0.7">
+                                    step="0.1" value="0.3">
 
                             </div>
 
@@ -72,8 +82,8 @@
 
                                 <dic class="time_body">
 
-                                    <span class="current_video_time" data-videoData="currentTime">00:00</span> /
-                                    <span class="video_time" data-videoData="videoDuration">00:00</span>
+                                    <span data-videoData="currentTime">00:00</span> /
+                                    <span data-videoData="videoDuration">00:00</span>
 
                                 </dic>
 
@@ -87,25 +97,23 @@
                                 <i class="icon_closed-captioning-solid"></i>
                             </button>
 
-                            <div class="dropdown" data-pos="top">
+                            <div class="dropdown">
 
                                 <button type="button" class="btn_icon icon_dropdown" data-btn="" aria-label="">
                                     <i class="icon_gear-solid"></i>
                                 </button>
 
-                                <ul class="icon_dropdown_menu" data-state="closed">
+                                <ul class="icon_dropdown_menu" data-position="top_right" data-state="closed">
 
                                     <li class="icon_dropdown_menu_item">
-                                        <button type="button" class="add-to-queue">
-                                            <i class="icon_list-solid"></i>
-                                            Add to queue
+                                        <button type="button">
+                                            Settings
                                         </button>
                                     </li>
 
                                     <li class="icon_dropdown_menu_item">
-                                        <button type="button" class="share" data-btn="modal_share">
-                                            <i class="icon_share-solid"></i>
-                                            Share
+                                        <button type="button">
+                                            Settings
                                         </button>
                                     </li>
 
@@ -119,9 +127,7 @@
 
                         </div>
 
-
                     </div>
-
 
                 </div>
 

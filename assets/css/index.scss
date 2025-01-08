@@ -1,20 +1,21 @@
-//MAIN CSS VARS START
-@import url("./icons.css");
-@import "./mixin.scss";
+@import "./general/icons.css";
+@import "./general/base.css";
+@import "./general/keyframes.css";
+@import "./general/mixin.scss";
 
 main {
     // height: 100vh;
     // margin-bottom: 92px;
 
-    .recommended_section {
+    .section_container {
         display: flex;
         flex-direction: column;
         gap: var(--md-p);
         padding: var(--md-p);
 
-        .recommended_container {
+        .videos_container {
 
-            .recommended_list {
+            .videos_list {
                 display: grid;
                 grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
                 margin: 0 auto;
@@ -74,6 +75,7 @@ main {
 
                             img {
                                 border-radius: 50%;
+                                position: relative;
                             }
                         }
 
@@ -109,8 +111,10 @@ main {
 
                     &:hover {
                         .video_card_header {
-                            border-bottom-left-radius: 0px;
-                            border-bottom-right-radius: 0px;
+                            img {
+                                border-bottom-left-radius: 0px;
+                                border-bottom-right-radius: 0px;
+                            }
 
                             &_duration {
                                 opacity: 0;
@@ -157,7 +161,7 @@ main {
                         box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
                         backdrop-filter: blur(10px);
                         border-radius: var(--border-radius-light);
-                        margin-bottom: var(--md-p);
+                        margin-bottom: var(--sm-p);
 
                         img {
                             border-radius: var(--border-radius-light);
@@ -168,77 +172,15 @@ main {
                         display: flex;
                         justify-content: space-between;
                         line-height: 1.5;
+
+                        a {
+                            text-decoration: none;
+                        }
                     }
                 }
             }
         }
     }
-}
-
-
-.dropdown {
-    position: relative;
-
-    .icon_dropdown {
-
-        &_menu {
-            width: 100%;
-            position: absolute;
-            top: 100%;
-            right: 0;
-            min-width: 200px;
-            padding: 10px;
-            background-color: var(--background-color-secondary);
-            z-index: 2;
-
-            &_item {
-                display: flex;
-                font-size: 14px;
-
-                a,
-                button {
-                    width: 100%;
-                    height: 100%;
-                    padding: 10px;
-                    text-align: left;
-                    // border: 1px solid red;
-
-                    i {
-                        margin-right: 10px;
-
-                    }
-                }
-
-                &:not(:last-of-type) {
-                    margin-bottom: 10px;
-                }
-
-            }
-
-            &[data-state="closed"] {
-                display: none;
-            }
-
-            &[data-state="open"] {
-                display: block;
-                animation: visibilityVisible var(--animation-speed) forwards;
-            }
-
-            &[data-state="closing"] {
-                animation: visibilityHidden var(--animation-speed) forwards;
-            }
-        }
-    }
-
-    @media only screen and (max-width: 768px) {
-        .icon_dropdown {
-            &_menu {
-                right: 0;
-            }
-        }
-    }
-
-    @media only screen and (min-width: 768px) {}
 }
 
 .overlay {
