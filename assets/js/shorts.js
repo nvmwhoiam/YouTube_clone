@@ -1,11 +1,11 @@
 window.addEventListener("DOMContentLoaded", async function () {
     try {
-        // const response = await fetch('./assets/js/video.json');
-        // const data = await response.json();
+        const response = await fetch('./assets/js/video.json');
+        const data = await response.json();
 
-        // for (const video of data) {
-        //     videoContainer(video);
-        // }
+        for (const video of data) {
+            videoContainer(video);
+        }
 
     } catch (error) {
         console.error('Error during fetching videos:', error);
@@ -19,12 +19,22 @@ function videoContainer(video) {
             <div class="reel_top_left">
 
                 <button type="button" class="btn_icon" data-videoBtn="playPause" aria-label="">
-                    <i class="icon_play-solid"></i>
+                    <i class="icon_pause-solid"></i>
                 </button>
 
-                <button type="button" class="btn_icon" data-videoBtn="volume" aria-label="">
-                    <i class="icon_volume-high-solid"></i>
-                </button>
+                <div class="button_body">
+
+                    <button type="button" class="btn_icon" data-videoBtn="volume" aria-label="">
+                        <i class="icon_volume-high-solid"></i>
+                    </button>
+
+                    <div class="volume">
+
+                        <input type="range" value="20" step="1" data-videoBtn="volumeRange">
+
+                    </div>
+
+                </div>
 
             </div>
 
@@ -42,21 +52,45 @@ function videoContainer(video) {
 
             <div class="reel_right">
 
-                <button type="button" class="btn_icon" data-videoBtn="like" aria-label="">
-                    <i class="icon_thumbs-up-regular"></i>
-                </button>
+                <div class="button_body">
 
-                <button type="button" class="btn_icon" data-videoBtn="dislike" aria-label="">
-                    <i class="icon_thumbs-down-regular"></i>
-                </button>
+                    <button type="button" class="btn_icon" data-videoBtn="like" aria-label="">
+                        <i class="icon_thumbs-up-regular"></i>
+                    </button>
 
-                <button type="button" class="btn_icon" data-videoBtn="comment" aria-label="">
-                    <i class="icon_comment-regular"></i>
-                </button>
+                    <small>1.2K</small>
 
-                <button type="button" class="btn_icon" data-videoBtn="share" aria-label="">
-                    <i class="icon_share-solid"></i>
-                </button>
+                </div>
+
+                <div class="button_body">
+
+                    <button type="button" class="btn_icon" data-videoBtn="dislike" aria-label="">
+                        <i class="icon_thumbs-down-regular"></i>
+                    </button>
+
+                    <small>1.2K</small>
+
+                </div>
+
+                <div class="button_body">
+
+                    <button type="button" class="btn_icon" data-videoBtn="comment" aria-label="">
+                        <i class="icon_comment-regular"></i>
+                    </button>
+
+                    <small>99+</small>
+
+                </div>
+
+                <div class="button_body">
+
+                    <button type="button" class="btn_icon" data-videoBtn="share" aria-label="">
+                        <i class="icon_share-solid"></i>
+                    </button>
+
+                    <small>Share</small>
+
+                </div>
 
                 <button type="button" class="btn_icon" data-videoBtn="more" aria-label="">
                     <i class="icon_ellipsis-vertical-solid"></i>
@@ -187,15 +221,15 @@ function playPauseAnimation(selector) {
 
     if (isPaused) {
         html = `
-            <div class="reel_center">
-                <i class="icon_pause-solid"></i>
-            </div>
+        < div class="reel_center" >
+            <i class="icon_pause-solid"></i>
+            </ >
         `;
     } else {
         html = `
-            <div class="reel_center">
-                <i class="icon_play-solid"></i>
-            </div>
+        < div class="reel_center" >
+            <i class="icon_play-solid"></i>
+            </ >
         `;
     }
 
