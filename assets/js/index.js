@@ -83,12 +83,12 @@ function videoContainer(video, selector) {
 function shortsContainer(video) {
     const videoHTML = `
         <li class="shorts_item" >
-            <a href="shorts.html?shortID=${video.video_id}" class="shorts_item_video">
+            <a href="shorts.html?watch=${video.video_id}" class="shorts_item_video">
                 <img src="https://picsum.photos/200/300?random=${video.video_id}" alt="video image">
             </a>
             <div class="shorts_item_body">
                 <div class="title">
-                    <a href="shorts.html?shortID=${video.video_id}" hreflang="">${video.title}</a>
+                    <a href="shorts.html?watch=${video.video_id}" hreflang="">${video.title}</a>
                     <p>${formatNumber(video.views)}</p>
                 </div>
 
@@ -115,8 +115,8 @@ function shortsContainer(video) {
                     </div>
                 </div>
             </div>
-        </ >
-        ` ;
+        </div>
+        `;
 
     // Insert the message into the chat container
     const chatContainer = document.querySelector(".shorts_list");

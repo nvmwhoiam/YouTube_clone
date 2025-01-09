@@ -89,6 +89,11 @@ main {
 
                             &_title {
                                 margin-bottom: var(--sm-p);
+                                display: -webkit-box;
+                                -webkit-box-orient: vertical;
+                                -webkit-line-clamp: 2;
+                                overflow: hidden;
+                                text-overflow: ellipsis;
                             }
 
                             &_meta {
@@ -175,6 +180,11 @@ main {
 
                         a {
                             text-decoration: none;
+                            display: -webkit-box;
+                            -webkit-box-orient: vertical;
+                            -webkit-line-clamp: 2;
+                            overflow: hidden;
+                            text-overflow: ellipsis;
                         }
                     }
                 }

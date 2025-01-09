@@ -7,8 +7,8 @@ Welcome to the YouTube Clone project! This project aims to recreate a simplified
 1. **Clone the repository:**
 
    ```bash
-   git clone https://github.com/nvmwhoiam/YouTube_clone.git
-   cd YouTube_clone
+   git clone https://github.com/nvmwhoiam/youtube-clone.git
+   cd youtube-clone
    ```
 
 2. **Install dependencies (none required):**
