@@ -14,9 +14,9 @@ window.addEventListener("DOMContentLoaded", async function () {
 
 function videoContainer(video) {
     const videoHTML = `
-        <div class="reel">
+        <div class="short">
 
-            <div class="reel_top_left">
+            <div class="short_top_left">
 
                 <button type="button" class="btn_icon" data-videoBtn="playPause" aria-label="">
                     <i class="icon_pause-solid"></i>
@@ -38,7 +38,7 @@ function videoContainer(video) {
 
             </div>
 
-            <div class="reel_top_right">
+            <div class="short_top_right">
 
                 <button type="button" class="btn_icon" data-videoBtn="fullsize" aria-label="">
                     <i class="icon_expand-solid"></i>
@@ -46,11 +46,11 @@ function videoContainer(video) {
 
             </div>
 
-            <div class="reel_card">
+            <div class="short_card">
                 <img src="https://picsum.photos/350/650?random=${video.video_id}" alt="video image">
             </div>
 
-            <div class="reel_right">
+            <div class="short_right">
 
                 <div class="button_body">
 
@@ -102,105 +102,105 @@ function videoContainer(video) {
     `;
 
     // Insert the message into the chat container
-    const reelsContainer = document.querySelector(".reels_container");
+    const shortsContainer = document.querySelector(".shorts_container");
 
-    if (reelsContainer) {
-        reelsContainer.insertAdjacentHTML("beforeend", videoHTML);
+    if (shortsContainer) {
+        shortsContainer.insertAdjacentHTML("beforeend", videoHTML);
     }
 }
 
 document.addEventListener('click', function (e) {
-    const playPauseReel = e.target.closest('.reel_card');
-    if (playPauseReel) {
-        const reelDiv = playPauseReel.closest('.reel');
-        const playPause = reelDiv.querySelector('[data-videoBtn="playPause"]');
-        const isPaused = reelDiv.classList.contains('paused');
+    const playPauseshort = e.target.closest('.short_card');
+    if (playPauseshort) {
+        const shortDiv = playPauseshort.closest('.short');
+        const playPause = shortDiv.querySelector('[data-videoBtn="playPause"]');
+        const isPaused = shortDiv.classList.contains('paused');
         const buttonIcon = playPause.querySelector('i');
 
         if (isPaused) {
-            reelDiv.classList.remove('paused');
+            shortDiv.classList.remove('paused');
             buttonIcon.classList.replace("icon_play-solid", "icon_pause-solid");
         } else {
-            reelDiv.classList.add('paused');
+            shortDiv.classList.add('paused');
             buttonIcon.classList.replace("icon_pause-solid", "icon_play-solid");
         }
 
-        playPauseAnimation(reelDiv);
+        playPauseAnimation(shortDiv);
     }
 
     const playPause = e.target.closest('[data-videoBtn="playPause"]');
     if (playPause) {
-        const reelDiv = playPause.closest('.reel');
-        const isPaused = reelDiv.classList.contains('paused');
+        const shortDiv = playPause.closest('.short');
+        const isPaused = shortDiv.classList.contains('paused');
         const buttonIcon = playPause.querySelector('i');
 
         if (isPaused) {
-            reelDiv.classList.remove('paused');
+            shortDiv.classList.remove('paused');
             buttonIcon.classList.replace("icon_play-solid", "icon_pause-solid");
         } else {
-            reelDiv.classList.add('paused');
+            shortDiv.classList.add('paused');
             buttonIcon.classList.replace("icon_pause-solid", "icon_play-solid");
         }
 
-        playPauseAnimation(reelDiv);
+        playPauseAnimation(shortDiv);
     }
 
     const volumeButton = e.target.closest('[data-videoBtn="volume"]');
     if (volumeButton) {
-        const reelDiv = volumeButton.closest('.reel');
-        const isMuted = reelDiv.classList.contains('muted');
+        const shortDiv = volumeButton.closest('.short');
+        const isMuted = shortDiv.classList.contains('muted');
         const buttonIcon = volumeButton.querySelector('i');
 
         if (isMuted) {
-            reelDiv.classList.remove('muted');
+            shortDiv.classList.remove('muted');
             buttonIcon.classList.replace("icon_volume-xmark-solid", "icon_volume-high-solid");
         } else {
-            reelDiv.classList.add('muted');
+            shortDiv.classList.add('muted');
             buttonIcon.classList.replace("icon_volume-high-solid", "icon_volume-xmark-solid");
         }
     }
 
     const fullsizeButton = e.target.closest('[data-videoBtn="fullsize"]');
     if (fullsizeButton) {
-        const reelDiv = fullsizeButton.closest('.reel');
-        const isFullSize = reelDiv.classList.contains('fullsize');
+        const shortDiv = fullsizeButton.closest('.short');
+        const isFullSize = shortDiv.classList.contains('fullsize');
         const buttonIcon = fullsizeButton.querySelector('i');
 
         if (isFullSize) {
-            reelDiv.classList.remove('fullsize');
+            shortDiv.classList.remove('fullsize');
             buttonIcon.classList.replace("icon_compress-solid", "icon_expand-solid");
         } else {
-            reelDiv.classList.add('fullsize');
+            shortDiv.classList.add('fullsize');
             buttonIcon.classList.replace("icon_expand-solid", "icon_compress-solid");
         }
     }
 
     const likeButton = e.target.closest('[data-videoBtn="like"]');
     if (likeButton) {
-        const reelDiv = likeButton.closest('.reel');
-        const isLiked = reelDiv.classList.contains('liked');
+        const shortDiv = likeButton.closest('.short');
+        const isLiked = shortDiv.classList.contains('liked');
         const buttonIcon = likeButton.querySelector('i');
 
         if (isLiked) {
-            reelDiv.classList.remove('liked');
+            shortDiv.classList.remove('liked');
             buttonIcon.classList.replace("icon_thumbs-up-solid", "icon_thumbs-up-regular");
         } else {
-            reelDiv.classList.add('liked');
+            shortDiv.classList.add('liked');
             buttonIcon.classList.replace("icon_thumbs-up-regular", "icon_thumbs-up-solid");
         }
     }
 
     const dislikeButton = e.target.closest('[data-videoBtn="dislike"]');
     if (dislikeButton) {
-        const reelDiv = dislikeButton.closest('.reel');
-        const isDisliked = reelDiv.classList.contains('dislike');
+        const shortDiv = dislikeButton.closest('.short');
+        const isDisliked = shortDiv.classList.contains('dislike');
         const buttonIcon = dislikeButton.querySelector('i');
 
         if (isDisliked) {
-            reelDiv.classList.remove('dislike');
+            shortDiv.classList.remove('dislike');
             buttonIcon.classList.replace("icon_thumbs-down-solid", "icon_thumbs-down-regular");
         } else {
-            reelDiv.classList.add('dislike');
+            shortDiv.classList.add('dislike');
             buttonIcon.classList.replace("icon_thumbs-down-regular", "icon_thumbs-down-solid");
         }
     }
@@ -221,13 +221,13 @@ function playPauseAnimation(selector) {
 
     if (isPaused) {
         html = `
-            <div class="reel_center" >
+            <div class="short_center" >
                 <i class="icon_pause-solid"></i>
             </div>
         `;
     } else {
         html = `
-            <div class="reel_center" >
+            <div class="short_center" >
                 <i class="icon_play-solid"></i>
             </div>
             `;
@@ -235,8 +235,8 @@ function playPauseAnimation(selector) {
 
     selector.insertAdjacentHTML("beforeend", html);
 
-    const newReelCenter = selector.querySelector('.reel_center');
-    newReelCenter.querySelector('i').addEventListener('animationend', function () {
-        newReelCenter.remove();
+    const newshortCenter = selector.querySelector('.short_center');
+    newshortCenter.querySelector('i').addEventListener('animationend', function () {
+        newshortCenter.remove();
     });
 }
