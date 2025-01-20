@@ -15,27 +15,27 @@ function videoContainer(video, selector) {
     const videoHTML = `
         <li class="video_card skeleton">
 
-            <a href="view.html?watch=${video.video_id}" hreflang="" class="video_card_header">
+            <a href="view.html?watch=${video.video_id}" hreflang="" class="video_card_header" aria-label="Video watch">
+            <img src="https://picsum.photos/300/200?random=${randomNumber}" alt="video image">
                 <div class="video_card_header_duration">${video.duration}</div>
                 <div class="video_card_header_overlay"> </div>
-                <img src="https://picsum.photos/200/300?random=${randomNumber}" alt="video image">
             </a>
 
             <div class="video_card_body">
 
                 <div class="video_card_body_user_avatar">
-                    <a href="#" hreflang="" class="username">
-                        <img src="https://picsum.photos/48/48?random=${randomNumber}" fetchpriority="low" alt="">
+                    <a href="#" hreflang="" class="username" aria="user profile">
+                        <img src="https://picsum.photos/48/48?random=${randomNumber}" alt="User avatar">
                     </a>
                 </div>
 
                 <div class="video_card_body_details">
-                    <a href="view.html?watch=${video.video_id}" hreflang="" class="video_card_body_details_title">
+                    <a href="view.html?watch=${video.video_id}" hreflang="" class="video_card_body_details_title" aria-label="Video watch">
                         ${video.title}
                     </a>
 
                     <div class="video_card_body_details_meta">
-                        <a href="#" hreflang="" class="username">
+                        <a href="#" hreflang="" class="username" aria-label="Video channel">
                             ${video.channel}
                         </a>
                         <div class="meta_container">
@@ -48,21 +48,21 @@ function videoContainer(video, selector) {
             <div class="video_card_body_btn">
 
                 <div class="dropdown">
-                    <button type="button" class="btn_icon icon_dropdown">
+                    <button type="button" class="btn_icon icon_dropdown" aria-label="Video dropdown">
                         <i class="icon_ellipsis-vertical-solid"></i>
                     </button>
 
                     <ul class="icon_dropdown_menu" data-position="bot_right" data-state="closed">
 
                         <li class="icon_dropdown_menu_item">
-                            <button type="button" data-videoBtn="addQueue">
+                            <button type="button" data-videoBtn="addQueue" aria-label="Video queue">
                                 <i class="icon_list-solid"></i>
                                 Add to queue
                             </button>
                         </li>
 
                         <li class="icon_dropdown_menu_item">
-                            <button type="button" data-videoBtn="modal_share">
+                            <button type="button" data-videoBtn="modal_share" aria-label="Video share">
                                 <i class="icon_share-solid"></i>
                                 Share
                             </button>
@@ -73,7 +73,7 @@ function videoContainer(video, selector) {
 
             </div>
         </li>
-    ` ;
+    `;
 
     if (selector) {
         selector.insertAdjacentHTML("beforeend", videoHTML);
@@ -83,32 +83,34 @@ function videoContainer(video, selector) {
 function shortsContainer(video) {
     const videoHTML = `
         <li class="shorts_item" >
-            <a href="shorts.html?watch=${video.video_id}" class="shorts_item_video">
+            <a href="shorts.html?watch=${video.video_id}" class="shorts_item_video" aria-label="Video watch">
                 <img src="https://picsum.photos/200/300?random=${video.video_id}" alt="video image">
             </a>
             <div class="shorts_item_body">
                 <div class="title">
-                    <a href="shorts.html?watch=${video.video_id}" hreflang="">${video.title}</a>
+                    <a href="shorts.html?watch=${video.video_id}" hreflang="" aria-label="Video watch">${video.title}</a>
                     <p>${formatNumber(video.views)}</p>
                 </div>
 
                 <div class="btn">
                     <div class="dropdown">
-                        <button type="button" class="btn_icon icon_dropdown">
+                        <button type="button" class="btn_icon icon_dropdown" aria-label="Video dropdown">
                             <i class="icon_ellipsis-vertical-solid"></i>
                         </button>
 
                         <ul class="icon_dropdown_menu" data-state="closed">
 
                             <li class="icon_dropdown_menu_item">
-                                <button type="button" class="add-to-queue">
+                                <button type="button" class="add-to-queue" aria-label="Video queue">
                                     <i class="icon_list-solid"> </i>
-                                    Add to queue</button>
+                                    Add to queue
+                                </button>
                             </li>
 
                             <li class="icon_dropdown_menu_item">
-                                <button type="button" class="share" data-btn="modal_share">
-                                    <i class="icon_share-solid"></i> Share</button>
+                                <button type="button" class="share" data-btn="modal_share" aria-label="Video share">
+                                    <i class="icon_share-solid"></i> Share
+                                </button>
                             </li>
 
                         </ul>
@@ -134,8 +136,8 @@ const recommendedVideos = document.querySelector("#recommended_list");
 
 for (const video of data) {
     videoContainer(video, trendingVideos);
-    videoContainer(video, recommendedVideos);
-    shortsContainer(video);
+    // videoContainer(video, recommendedVideos);
+    // shortsContainer(video);
 }
 
 document.addEventListener('click', function (e) {
