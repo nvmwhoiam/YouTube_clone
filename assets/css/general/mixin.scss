@@ -138,4 +138,15 @@
     }
 }
 
+@mixin clampText($num) {
+    display: -webkit-box;
+    line-clamp: $num;
+    -webkit-line-clamp: $num;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    word-break: break-all;
+    overflow-wrap: break-word;
+}
+
 // look after keyframes above

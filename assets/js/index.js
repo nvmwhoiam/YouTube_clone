@@ -1,41 +1,54 @@
 "use strict"
 
-import { dropdownMenu, enhancedTimeAgo, formatNumber } from "./functions.js";
+import { dropdownMenu, enhancedTimeAgo, formatNumber, setClosedToOpen, setClosingToClosed } from "./functions.js";
 
-// document.querySelectorAll("video").forEach((e) => {
-//     // document.querySelectorAll(".time").innerText = Math.floor(e.duration);
+const tagList = document.querySelector('.tag_list');
 
-//     document.querySelectorAll(".time").forEach((time) => {
-//         time.innerText = e.duration;
-//     });
-// });
+function checkScrollPosition() {
+    const btnBack = document.querySelector('.btn_back');
+    const btnNext = document.querySelector('.btn_next');
+
+    if (tagList.scrollLeft > 0) {
+        btnBack.classList.remove('hide');
+    } else {
+        btnBack.classList.add('hide');
+    }
+
+    if (tagList.scrollLeft + tagList.clientWidth >= tagList.scrollWidth) {
+        btnNext.classList.add('hide');
+    } else {
+        btnNext.classList.remove('hide');
+    }
+}
+
+tagList.addEventListener('scroll', checkScrollPosition);
 
 function videoContainer(video, selector) {
     const randomNumber = Math.random();
     const videoHTML = `
         <li class="video_card skeleton">
 
-            <a href="view.html?watch=${video.video_id}" hreflang="" class="video_card_header">
+            <a href="view.html?watch=${video.video_id}" hreflang="" class="video_card_header" aria-label="Video watch">
+            <img src="https://picsum.photos/300/200?random=${randomNumber}" alt="video image">
                 <div class="video_card_header_duration">${video.duration}</div>
                 <div class="video_card_header_overlay"> </div>
-                <img src="https://picsum.photos/200/300?random=${randomNumber}" alt="video image">
             </a>
 
             <div class="video_card_body">
 
                 <div class="video_card_body_user_avatar">
-                    <a href="#" hreflang="" class="username">
-                        <img src="https://picsum.photos/48/48?random=${randomNumber}" fetchpriority="low" alt="">
+                    <a href="#" hreflang="" class="username" aria="user profile">
+                        <img src="https://picsum.photos/48/48?random=${randomNumber}" alt="User avatar">
                     </a>
                 </div>
 
                 <div class="video_card_body_details">
-                    <a href="view.html?watch=${video.video_id}" hreflang="" class="video_card_body_details_title">
+                    <a href="view.html?watch=${video.video_id}" hreflang="" class="video_card_body_details_title" aria-label="Video watch">
                         ${video.title}
                     </a>
 
                     <div class="video_card_body_details_meta">
-                        <a href="#" hreflang="" class="username">
+                        <a href="#" hreflang="" class="username" aria-label="Video channel">
                             ${video.channel}
                         </a>
                         <div class="meta_container">
@@ -48,21 +61,21 @@ function videoContainer(video, selector) {
             <div class="video_card_body_btn">
 
                 <div class="dropdown">
-                    <button type="button" class="btn_icon icon_dropdown">
+                    <button type="button" class="btn_icon icon_dropdown" aria-label="Video dropdown">
                         <i class="icon_ellipsis-vertical-solid"></i>
                     </button>
 
                     <ul class="icon_dropdown_menu" data-position="bot_right" data-state="closed">
 
                         <li class="icon_dropdown_menu_item">
-                            <button type="button" data-videoBtn="addQueue">
+                            <button type="button" data-videoBtn="addQueue" aria-label="Video queue">
                                 <i class="icon_list-solid"></i>
                                 Add to queue
                             </button>
                         </li>
 
                         <li class="icon_dropdown_menu_item">
-                            <button type="button" data-videoBtn="modal_share">
+                            <button type="button" data-videoBtn="modal_share" aria-label="Video share">
                                 <i class="icon_share-solid"></i>
                                 Share
                             </button>
@@ -73,7 +86,7 @@ function videoContainer(video, selector) {
 
             </div>
         </li>
-    ` ;
+    `;
 
     if (selector) {
         selector.insertAdjacentHTML("beforeend", videoHTML);
@@ -83,32 +96,34 @@ function videoContainer(video, selector) {
 function shortsContainer(video) {
     const videoHTML = `
         <li class="shorts_item" >
-            <a href="shorts.html?watch=${video.video_id}" class="shorts_item_video">
+            <a href="shorts.html?watch=${video.video_id}" class="shorts_item_video" aria-label="Video watch">
                 <img src="https://picsum.photos/200/300?random=${video.video_id}" alt="video image">
             </a>
             <div class="shorts_item_body">
                 <div class="title">
-                    <a href="shorts.html?watch=${video.video_id}" hreflang="">${video.title}</a>
+                    <a href="shorts.html?watch=${video.video_id}" hreflang="" aria-label="Video watch">${video.title}</a>
                     <p>${formatNumber(video.views)}</p>
                 </div>
 
                 <div class="btn">
                     <div class="dropdown">
-                        <button type="button" class="btn_icon icon_dropdown">
+                        <button type="button" class="btn_icon icon_dropdown" aria-label="Video dropdown">
                             <i class="icon_ellipsis-vertical-solid"></i>
                         </button>
 
                         <ul class="icon_dropdown_menu" data-state="closed">
 
                             <li class="icon_dropdown_menu_item">
-                                <button type="button" class="add-to-queue">
+                                <button type="button" class="add-to-queue" aria-label="Video queue">
                                     <i class="icon_list-solid"> </i>
-                                    Add to queue</button>
+                                    Add to queue
+                                </button>
                             </li>
 
                             <li class="icon_dropdown_menu_item">
-                                <button type="button" class="share" data-btn="modal_share">
-                                    <i class="icon_share-solid"></i> Share</button>
+                                <button type="button" class="share" data-btn="modal_share" aria-label="Video share">
+                                    <i class="icon_share-solid"></i> Share
+                                </button>
                             </li>
 
                         </ul>
@@ -143,6 +158,22 @@ document.addEventListener('click', function (e) {
     if (iconDropdown) {
         const videoDropdown = iconDropdown.closest(".dropdown").querySelector(".icon_dropdown_menu");
         dropdownMenu(videoDropdown);
+    }
+
+    const btnBack = e.target.closest('.btn_back');
+    if (btnBack) {
+        tagList.scrollTo({
+            left: 0,
+            behavior: 'smooth'
+        });
+    }
+
+    const btnNext = e.target.closest('.btn_next');
+    if (btnNext) {
+        tagList.scrollTo({
+            left: tagList.scrollWidth,
+            behavior: 'smooth'
+        });
     }
 
     const addQueue = e.target.closest('[data-videoBtn="addQueue"]');

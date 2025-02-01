@@ -16,56 +16,224 @@
     <meta name="author" content="nvmwhoiam">
     <meta name="keywords"
         content="Connectivity Solutions,Innovative Technology, Collaboration Platform,Tech Solutions,Communication Tools,Tech Innovation,Efficiency Tools,Bridging Technology,Seamless Connections,Modern Connectivity">
-    <title>Lynqis - YouTube Clone | Lynqis.io</title>
+
+    <title>YouTube Clone | Lynqis.io</title>
 </head>
 
 <body>
 
-    <nav>
+    <header class="top_bar">
 
-    </nav>
+        <div class="flex">
 
-    <main>
+            <div class="flex_item flex_item_start">
+                <button type="button" class="btn_icon" aria-label="Navigation toggle">
+                    <i class="icon_bars-solid"></i>
+                </button>
 
-        <section class="section_container">
-
-            <div class="section_header">
-                <h3>Trending</h3>
+                <a href="#" hreflang="" aria-label="VideoTube">
+                    Video<span class="text">Tube</span>
+                </a>
             </div>
 
-            <div class="videos_container">
+            <div class="flex_item flex_item_middle">
 
-                <ul class="videos_list" id="trending_list"> </ul>
+                <div class="input_body">
+                    <input type="search" placeholder="Search..." name="search">
+                    <button type="button" class="btn_icon" aria-label="Search button">
+                        <i class="icon_magnifying-glass-solid"></i>
+                    </button>
+                </div>
 
+                <button type="button" class="btn_icon" aria-label="Microphone button">
+                    <i class="icon_microphone-solid"></i>
+                </button>
             </div>
 
-        </section>
+            <div class="flex_item flex_item_end">
 
-        <section class="section_container">
+                <div class="dropdown">
+                    <button type="button" class="btn_icon icon_dropdown" aria-label="Navigation dropdown">
+                        <i class="icon_ellipsis-vertical-solid"></i>
+                    </button>
 
-            <div class="section_header">
-                <h3>Recommended</h3>
+                    <ul class="icon_dropdown_menu" data-position="bot_right" data-state="closed">
+
+                        <li class="icon_dropdown_menu_item">
+                            <button type="button" aria-label="Navigation link">
+                                Your data in VideoTube
+                            </button>
+                        </li>
+
+                        <li class="icon_dropdown_menu_item">
+                            <button type="button" aria-label="Navigation link">
+                                Device theme
+                            </button>
+                        </li>
+
+                        <li class="icon_dropdown_menu_item">
+                            <button type="button" aria-label="Navigation link">
+                                Language: English
+                            </button>
+                        </li>
+
+                        <li class="icon_dropdown_menu_item">
+                            <button type="button" aria-label="Navigation link">
+                                Settings
+                            </button>
+                        </li>
+
+                        <li class="icon_dropdown_menu_item">
+                            <button type="button" aria-label="Navigation link">
+                                Help
+                            </button>
+                        </li>
+
+                        <li class="icon_dropdown_menu_item">
+                            <button type="button" aria-label="Navigation link">
+                                Feedback
+                            </button>
+                        </li>
+
+                    </ul>
+                </div>
+
+                <button type="button" class="btn_primary" aria-label="Sign in">
+                    Sign in
+                </button>
             </div>
 
-            <div class="videos_container">
+        </div>
 
-                <ul class="videos_list" id="recommended_list"> </ul>
+    </header>
 
-            </div>
+    <main class="main_container">
 
-        </section>
+        <aside class="main_navbar">
 
-        <section class="shorts_section">
+        </aside>
 
-            <div class="section_header">
-                <h3>Shorts</h3>
-            </div>
+        <section class="main_section">
 
-            <div class="shorts_container">
+            <section class="tags_section">
 
-                <ul class="shorts_list"> </ul>
+                <button type="button" class="btn_icon btn_back hide" aria-label="Tags back button">
+                    <i class="icon_angle-left-solid"></i>
+                </button>
 
-            </div>
+                <ul class="tag_list">
+                    <li class="tag_list_item">
+                        <button type="button" aria-label="">All</button>
+                    </li>
+
+                    <li class="tag_list_item">
+                        <button type="button" aria-label="">News</button>
+                    </li>
+
+                    <li class="tag_list_item">
+                        <button type="button" aria-label="">Web design</button>
+                    </li>
+
+                    <li class="tag_list_item">
+                        <button type="button" aria-label="">Live</button>
+                    </li>
+
+                    <li class="tag_list_item">
+                        <button type="button" aria-label="">Music</button>
+                    </li>
+
+                    <li class="tag_list_item">
+                        <button type="button" aria-label="">Computer Hardware</button>
+                    </li>
+
+                    <li class="tag_list_item">
+                        <button type="button" aria-label="">Website</button>
+                    </li>
+
+                    <li class="tag_list_item">
+                        <button type="button" aria-label="">AI</button>
+                    </li>
+
+                    <li class="tag_list_item">
+                        <button type="button" aria-label="">Gaming</button>
+                    </li>
+
+                    <li class="tag_list_item">
+                        <button type="button" aria-label="">Web Development</button>
+                    </li>
+
+                    <li class="tag_list_item">
+                        <button type="button" aria-label="">Software Engineer</button>
+                    </li>
+
+                    <li class="tag_list_item">
+                        <button type="button" aria-label="">JavaScript</button>
+                    </li>
+
+                    <li class="tag_list_item">
+                        <button type="button" aria-label="">ChatGPT</button>
+                    </li>
+
+                    <li class="tag_list_item">
+                        <button type="button" aria-label="">DeepSeek</button>
+                    </li>
+
+                    <li class="tag_list_item">
+                        <button type="button" aria-label="">Recently Uploaded</button>
+                    </li>
+
+                    <li class="tag_list_item">
+                        <button type="button" aria-label="">Watched</button>
+                    </li>
+                </ul>
+
+                <button type="button" class="btn_icon btn_next" aria-label="Tags next button">
+                    <i class="icon_angle-right-solid"></i>
+                </button>
+
+            </section>
+
+            <section class="section_container">
+
+                <div class="section_header">
+                    <h3>Trending</h3>
+                </div>
+
+                <div class="videos_container">
+
+                    <ul class="videos_list" id="trending_list"> </ul>
+
+                </div>
+
+            </section>
+
+            <section class="section_container">
+
+                <div class="section_header">
+                    <h3>Recommended</h3>
+                </div>
+
+                <div class="videos_container">
+
+                    <ul class="videos_list" id="recommended_list"> </ul>
+
+                </div>
+
+            </section>
+
+            <section class="shorts_section">
+
+                <div class="section_header">
+                    <h3>Shorts</h3>
+                </div>
+
+                <div class="shorts_container">
+
+                    <ul class="shorts_list"> </ul>
+
+                </div>
+
+            </section>
 
         </section>
 

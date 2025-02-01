@@ -176,3 +176,89 @@
     }
 
 }
+
+input[type="range"] {
+    -webkit-appearance: none;
+    width: 100%;
+    height: 6px; // Track height
+    background: #e0e0e0;
+    border-radius: 3px;
+    outline: none;
+    position: relative;
+
+    // Track (background) style
+    &::-webkit-slider-runnable-track {
+        background: #e0e0e0;
+        height: 6px; // Same as the height of the input
+        border-radius: 3px;
+    }
+
+    &::-moz-range-track {
+        background: #e0e0e0;
+        height: 6px;
+        border-radius: 3px;
+    }
+
+    &::-ms-track {
+        background: transparent;
+        border-color: transparent;
+        border-width: 6px 0;
+        color: transparent;
+        height: 6px;
+    }
+
+    // Thumb (circle) style
+    &::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        appearance: none;
+        width: 14px;
+        height: 14px;
+        background: #ff0000;
+        border-radius: 50%;
+        margin-top: -4px; // Aligns the thumb in the center
+        cursor: pointer;
+        transition: transform 0.2s ease;
+
+        &:hover {
+            transform: scale(1.2);
+        }
+    }
+
+    &::-moz-range-thumb {
+        width: 14px;
+        height: 14px;
+        background: #ff0000;
+        border: none;
+        border-radius: 50%;
+        cursor: pointer;
+        transform: translateY(-50%);
+        transition: transform 0.2s ease;
+
+        &:hover {
+            transform: scale(1.2);
+        }
+    }
+
+    &::-ms-thumb {
+        width: 14px;
+        height: 14px;
+        background: #ff0000;
+        border: none;
+        border-radius: 50%;
+        cursor: pointer;
+        margin-top: -4px; // Aligns the thumb in the center
+    }
+
+    // Focus and Active states
+    &:focus {
+        outline: none;
+    }
+
+    &:active::-webkit-slider-thumb {
+        transform: scale(1.4);
+    }
+
+    &:active::-moz-range-thumb {
+        transform: scale(1.4);
+    }
+}

@@ -174,7 +174,6 @@ document.addEventListener('keydown', function (event) {
 currentVideo.addEventListener('loadedmetadata', () => {
     currentVideo.volume = 0.3;
 
-    return
     if (currentVideo.duration && !isNaN(currentVideo.duration)) {
         videoDuration.innerText = formatTime(currentVideo.duration);
     } else {

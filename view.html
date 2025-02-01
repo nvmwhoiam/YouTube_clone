@@ -11,19 +11,16 @@
     <link rel="stylesheet" type="text/css" media="screen" href="./assets/css/view.css">
     <link rel="icon" type="image/x-icon" href="../../assets/img/favicon-16x16.png">
     <link rel="icon" type="image/x-icon" href="../../assets/img/favicon-32x32.png">
-    <meta name="robots" content="noindex, nofollow">
+    <link rel="canonical" href="https://lynqis.io/demo/youtube-clone/view.html">
+    <meta name="robots" content="index, follow">
     <meta name="author" content="nvmwhoiam">
     <meta name="keywords"
         content="Connectivity Solutions,Innovative Technology, Collaboration Platform,Tech Solutions,Communication Tools,Tech Innovation,Efficiency Tools,Bridging Technology,Seamless Connections,Modern Connectivity">
 
-    <title>Lynqis - YouTube Clone Video | Lynqis.io</title>
+    <title>YouTube Clone Video | Lynqis.io</title>
 </head>
 
 <body>
-
-    <nav>
-
-    </nav>
 
     <main class="main_container">
 
@@ -63,7 +60,7 @@
                                 <i class="icon_pause-solid"></i>
                             </button>
 
-                            <button type="button" class="btn_icon" data-btn="" aria-label="">
+                            <button type="button" class="btn_icon" data-videoBtn="" aria-label="">
                                 <i class="icon_forward-step-solid"></i>
                             </button>
 
@@ -73,8 +70,10 @@
                                     <i class="icon_volume-high-solid" data-videoBtn="volumeData"></i>
                                 </button>
 
-                                <input type="range" data-videoData="volumeInput" class="indicator" min="0" max="1"
-                                    step="0.1" value="0.3">
+                                <div class="volume_body">
+                                    <input type="range" data-videoData="volumeInput" class="indicator" min="0" max="1"
+                                        step="0.1" value="0.3">
+                                </div>
 
                             </div>
 
@@ -168,7 +167,7 @@
 
         </section>
 
-        <div class="suggestions">
+        <aside class="suggestions">
 
             <div class="queue">
 
@@ -186,7 +185,7 @@
 
             <ul class="recommended_list"></ul>
 
-        </div>
+        </aside>
 
         </div>
 
