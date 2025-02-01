@@ -149,8 +149,8 @@ const recommendedVideos = document.querySelector("#recommended_list");
 
 for (const video of data) {
     videoContainer(video, trendingVideos);
-    videoContainer(video, recommendedVideos);
-    shortsContainer(video);
+    // videoContainer(video, recommendedVideos);
+    // shortsContainer(video);
 }
 
 document.addEventListener('click', function (e) {
